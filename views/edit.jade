@@ -1,0 +1,50 @@
+extends layout
+
+block link
+	-var selected = 'Dashboard';
+	
+block content
+	.quill-container
+		#full-toolbar.ql-toolbar.ql-snow 
+			span.ql-format-group
+				span(title='Bold', class='ql-format-button ql-bold')
+				span.ql-format-separator
+				span(title='Italic', class='ql-format-button ql-italic')
+				span.ql-format-separator
+				span(title='Underline', class='ql-format-button ql-underline')
+				span.ql-format-separator
+				span(title='Strikethrough', class='ql-format-button ql-strike')
+			span.ql-format-group
+				span(title='List', class='ql-format-button ql-list')
+			span.ql-format-group
+				span(title='Link', class='ql-format-button ql-link')
+			span(title='Save', class='ql-picker-label add-story')
+				a(href='javascript: post();') Save
+			
+
+		#full-editor.ql-editor.ql.snow
+			!{story.title}
+			
+		#id
+			!{story.id}
+		
+	script.
+		function post() {
+			var actionPath = "/dashboard/update/" + $('#id').html();
+			
+			method = "post"; 
+
+			var form = document.createElement("form");
+			form.setAttribute("method", method);
+			form.setAttribute("action", actionPath);
+
+			var hiddenField = document.createElement("input");
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("name", "contents");
+			hiddenField.setAttribute("value", fullEditor.getHTML());
+
+			form.appendChild(hiddenField);
+
+			document.body.appendChild(form);
+			form.submit();
+		 };
