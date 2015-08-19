@@ -68,7 +68,7 @@ sup {
  */
 
 .cover {
-  margin-top: 130px;
+  margin-top: 150px;
   padding: 0 20px;
 }
 .cover .btn-lg {
@@ -119,17 +119,22 @@ sup {
   }
 }
 
+/* Edit area styling */
+#edit-area {
+  width: 100%;
+  min-height: 350px;
+  margin-top: 30px;
+}
 /* Quill JS text editor styling */
 .quill-container {
   background-color: #fff;
   color: #444;
   text-shadow: none;
-  width: 100%;
+  width: 70%;
+  float: left;
   height: auto;
   max-height: 1100px;
   min-width: 400px;
-  max-width: 1100px;
-  margin: 30px auto 0 auto;
 }
 #full-toolbar {
   text-align: left;
@@ -141,25 +146,49 @@ sup {
   text-align: left;
 }
 #term-editor {
-  margin: 30px 0 30px 0;
-  height: 30px;
+  min-height: 300px;
   text-align: left;
-  width: 100%;
+  width: 25%;
+  float: right;
+}
+#term-list {
+  text-align: left;
+  float: right;
+  width: 25%;
+  min-height: 50px;
+  padding-top: 50px;
+  margin: 20px 0 40px 0;
+  /*display: none;*/
+}
+.dash-term {
+  min-height: 30px;
+  margin-bottom: 25px;
+}
+.dash-term:hover {
+  background: #bfbfbf;
+}
+.dash-word {
+  padding: 5px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.dash-definition {
+  padding: 5px;
 }
 .term-edit {
   height: 30px;
-  width: 20%;
-  border: 1px solid #444;
+  width: 100%;
+  border: 1px solid #bfbfbf;
   padding: 5px;
-  margin-right: 20px;
-  float: left;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 .definition-edit {
-  height: 30px;
-  width: 70%;
-  border: 1px solid #444;
+  min-height: 260px;
+  width: 100%;
+  border: 1px solid #bfbfbf;
   padding: 5px;
-  float: left;
+  resize: none;
 }
 .add-story {
   font-weight: bold;
@@ -176,32 +205,39 @@ sup {
 }
 
 /* Dashboard story styling */
+#story-list {
+  text-align: left;
+  float: left;
+  width: 70%;
+  min-height: 50px;
+  margin: 20px 0 40px 0;
+}
 .dash-story {
   border: 1px dashed #000;
   text-align: left;
-  padding: 10px;
-  margin: 20px 0 40px 0;
+  padding: 5px;
+  margin-top: 50px;
 }
 /*.dash-story:hover {
   background-color: #444;
   color: #fff;
 }*/
-.dash-story ul {
+ul {
   list-style-type: none;
   padding: 20px 0 20px 0;
   float: right;
 }
-.dash-story li {
+li {
   display: inline-block;
   padding-left: 20px;
   font-weight: bold;
 }
-.dash-story li a {
+li a {
   padding-right: 0;
   padding-left: 0;
   color: #444; /* IE8 proofing */
 }
-.dash-story li a:hover {
+li a:hover {
   text-decoration: none;
   color: #06c;
 }

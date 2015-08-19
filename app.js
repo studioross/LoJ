@@ -34,6 +34,7 @@ app.use('/dashboard/add', dashboard.add);
 app.use('/dashboard/edit/:id', dashboard.edit);
 app.use('/dashboard/update/:id', dashboard.update);
 app.use('/dashboard/delete/:id', dashboard.delete);
+app.use('/dashboard/deleteterm/:id', dashboard.deleteterm);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

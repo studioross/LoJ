@@ -4,42 +4,58 @@ block link
   -var selected = 'Dashboard';
 
 block content
-  .quill-container
-    #full-toolbar.ql-toolbar.ql-snow 
-      span.ql-format-group
-        span(title='Bold', class='ql-format-button ql-bold')
-        span.ql-format-separator
-        span(title='Italic', class='ql-format-button ql-italic')
-        span.ql-format-separator
-        span(title='Underline', class='ql-format-button ql-underline')
-        span.ql-format-separator
-        span(title='Strikethrough', class='ql-format-button ql-strike')
-      span.ql-format-group
-        span(title='List', class='ql-format-button ql-list')
-      span.ql-format-group
-        span(title='Link', class='ql-format-button ql-link')
-      span(title='Save', class='ql-picker-label add-story')
-        a(href='javascript: post()') Add Story
+  #edit-area
+    .quill-container
+      #full-toolbar.ql-toolbar.ql-snow 
+        span.ql-format-group
+          span(title='Bold', class='ql-format-button ql-bold')
+          span.ql-format-separator
+          span(title='Italic', class='ql-format-button ql-italic')
+          span.ql-format-separator
+          span(title='Underline', class='ql-format-button ql-underline')
+          span.ql-format-separator
+          span(title='Strikethrough', class='ql-format-button ql-strike')
+        span.ql-format-group
+          span(title='List', class='ql-format-button ql-list')
+        span.ql-format-group
+          span(title='Link', class='ql-format-button ql-link')
+        span(title='Save', class='ql-picker-label add-story')
+          a(href='javascript: post()') Add Story
+        
+
+      #full-editor.ql-editor.ql.snow
       
-
-    #full-editor.ql-editor.ql.snow
-    
-  #term-editor
-    form(id='addterm', action='/dashboard/add', method='post', accept-charset='utf-8')  
-      input(name='term', type='text', value='', placeholder='Term').term-edit
-      input(name='definition', type='text', value='', placeholder='Definition').definition-edit
-      span(title='Save', class='ql-picker-label add-story', style='padding: 4px 8px 0 0;')
-        a(href='javascript: add_term();')  Add Term  
+    #term-editor
+      span(title='Save', class='ql-picker-label add-story', style='padding: 10px 8px 0 0; height: 40px;')
+        a(href='javascript: add_term();')  Add Term
+      form(id='addterm', action='/dashboard/add', method='post', accept-charset='utf-8')  
+        input(name='term', type='text', value='', placeholder='Term').term-edit
+        textarea(name='definition', type='text', value='', placeholder='Definition').definition-edit
+      //span(title='Save', class='ql-picker-label add-story', style='padding: 10px 30px 0 0;')
+      //  a(href='#').show-terms  Stories / Terms  
   
-  - for story in stories
-    div.dash-story
-      !{story.text}
-
-      ul.delete
-        li
-          a(href='/dashboard/edit/' + story._id, title='Edit this story') Edit
-        li
-          a(href='/dashboard/delete/' + story._id, title='Delete this story') Delete
+  #content
+  
+    #term-list
+      - for term in terms
+        div.dash-term
+          div.dash-word
+            !{term.word}
+          div.dash-definition
+            !{term.definition}
+          ul(style='padding: 0;')
+            li
+              a(href='/dashboard/deleteterm/' + term._id, title='Delete this term') Delete
+    
+    #story-list
+      - for story in stories
+        div.dash-story
+          !{story.text}
+          ul
+            li
+              a(href='/dashboard/edit/' + story._id, title='Edit this story') Edit
+            li
+              a(href='/dashboard/delete/' + story._id, title='Delete this story') Delete
         
   script.
     function post() {
@@ -65,3 +81,4 @@ block content
     function add_term() {
       addterm.submit();
     };
+  

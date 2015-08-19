@@ -10,8 +10,10 @@ var Term = mongoose.model('terms');
 router.get('/', function(req, res) {
   Story.find(function(err, stories){
     // console.log(stories)
-    res.render('dashboard', { title: 'LoJ :: Dashboard', stories : stories }
-    );
+    Term.find(function(err, terms){
+      console.log(terms)
+      res.render('dashboard', { title: 'LoJ :: Dashboard', stories : stories, terms : terms });
+    });
   });
 });
 
@@ -36,7 +38,10 @@ router.add = function(req, res) {
 /* EDIT individual item */
 router.edit = function(req, res) {
   Story.findById(req.params.id, function(err, story) {
-    res.render('edit', { title: 'LoJ :: Edit Story', story : story });
+    Term.find(function(err, terms){
+      console.log(terms)
+      res.render('edit', { title: 'LoJ :: Edit Story', story : story, terms : terms });
+    });
   });
 };
 
@@ -58,6 +63,12 @@ router.delete = function(req, res) {
     });
   });
 };
-
+router.deleteterm = function(req, res) {
+  Term.findById(req.params.id, function(err, term) {
+    term.remove(function (err, term) {
+      res.redirect('/dashboard');
+    });
+  });
+};
 
 module.exports = router;

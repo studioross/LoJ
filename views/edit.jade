@@ -4,29 +4,36 @@ block link
 	-var selected = 'Dashboard';
 	
 block content
-	.quill-container
-		#full-toolbar.ql-toolbar.ql-snow 
-			span.ql-format-group
-				span(title='Bold', class='ql-format-button ql-bold')
-				span.ql-format-separator
-				span(title='Italic', class='ql-format-button ql-italic')
-				span.ql-format-separator
-				span(title='Underline', class='ql-format-button ql-underline')
-				span.ql-format-separator
-				span(title='Strikethrough', class='ql-format-button ql-strike')
-			span.ql-format-group
-				span(title='List', class='ql-format-button ql-list')
-			span.ql-format-group
-				span(title='Link', class='ql-format-button ql-link')
-			span(title='Save', class='ql-picker-label add-story')
-				a(href='javascript: post();') Save
-			
+	#edit-area
+		.quill-container
+			#full-toolbar.ql-toolbar.ql-snow 
+				span.ql-format-group
+					span(title='Bold', class='ql-format-button ql-bold')
+					span.ql-format-separator
+					span(title='Italic', class='ql-format-button ql-italic')
+					span.ql-format-separator
+					span(title='Underline', class='ql-format-button ql-underline')
+					span.ql-format-separator
+					span(title='Strikethrough', class='ql-format-button ql-strike')
+				span.ql-format-group
+					span(title='List', class='ql-format-button ql-list')
+				span.ql-format-group
+					span(title='Link', class='ql-format-button ql-link')
+				span(title='Save', class='ql-picker-label add-story')
+					a(href='javascript: post();') Save
+				
 
-		#full-editor.ql-editor.ql-snow
-			!{story.text}
-			
-		#id
-			!{story.id}
+			#full-editor.ql-editor.ql-snow
+				!{story.text}
+				
+			#id
+				!{story.id}
+		
+		#term-list(style='margin: 0; padding-top: 40px;')
+			- for term in terms
+				div.dash-term(style='margin-bottom: 15px;')
+					div.dash-word
+						!{term.word}
 		
 	script.
 		function post() {
