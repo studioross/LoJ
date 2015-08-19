@@ -22,8 +22,8 @@ block content
 				a(href='javascript: post();') Save
 			
 
-		#full-editor.ql-editor.ql.snow
-			!{story.title}
+		#full-editor.ql-editor.ql-snow
+			!{story.text}
 			
 		#id
 			!{story.id}
@@ -38,13 +38,16 @@ block content
 			form.setAttribute("method", method);
 			form.setAttribute("action", actionPath);
 
-			var hiddenField = document.createElement("input");
-			hiddenField.setAttribute("type", "hidden");
-			hiddenField.setAttribute("name", "contents");
-			hiddenField.setAttribute("value", fullEditor.getHTML());
-
-			form.appendChild(hiddenField);
+			var storyField = document.createElement("input");
+			storyField.setAttribute("type", "hidden");
+			storyField.setAttribute("name", "contents");
+			storyField.setAttribute("value", fullEditor.getHTML());
+			
+			form.appendChild(storyField);
 
 			document.body.appendChild(form);
 			form.submit();
 		 };
+		 function add_row() {
+			 
+		 }

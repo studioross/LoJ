@@ -140,6 +140,27 @@ sup {
   border: 1px solid #444;
   text-align: left;
 }
+#term-editor {
+  margin: 30px 0 30px 0;
+  height: 30px;
+  text-align: left;
+  width: 100%;
+}
+.term-edit {
+  height: 30px;
+  width: 20%;
+  border: 1px solid #444;
+  padding: 5px;
+  margin-right: 20px;
+  float: left;
+}
+.definition-edit {
+  height: 30px;
+  width: 70%;
+  border: 1px solid #444;
+  padding: 5px;
+  float: left;
+}
 .add-story {
   font-weight: bold;
   padding: 2px 2px 0 0;
@@ -185,7 +206,8 @@ sup {
   color: #06c;
 }
 #id {
-  float: right;
+  text-align: right;
+  width: 100%;
   font-weight: bold;
 }
 /* Dashboard story styling */

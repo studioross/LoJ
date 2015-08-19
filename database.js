@@ -3,17 +3,16 @@ var random = require('mongoose-simple-random');
 var Schema   = mongoose.Schema;
 
 var Story = new Schema({
-  title : String,
+  text : String,
 });
 Story.plugin(random);
 
-var Definition = new Schema({
+var Term = new Schema({
   word : String,
   definition : String,
 });
 
-mongoose.model('definitions', Definition);
-
 mongoose.model('stories', Story);
+mongoose.model('terms', Term);
 
 mongoose.connect('mongodb://localhost/loj');

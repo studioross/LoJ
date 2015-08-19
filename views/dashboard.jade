@@ -19,21 +19,28 @@ block content
       span.ql-format-group
         span(title='Link', class='ql-format-button ql-link')
       span(title='Save', class='ql-picker-label add-story')
-        a(href='javascript: post()') Save
+        a(href='javascript: post()') Add Story
       
 
     #full-editor.ql-editor.ql.snow
+    
+  #term-editor
+    form(id='addterm', action='/dashboard/add', method='post', accept-charset='utf-8')  
+      input(name='term', type='text', value='', placeholder='Term').term-edit
+      input(name='definition', type='text', value='', placeholder='Definition').definition-edit
+      span(title='Save', class='ql-picker-label add-story', style='padding: 4px 8px 0 0;')
+        a(href='javascript: add_term();')  Add Term  
   
   - for story in stories
     div.dash-story
-      !{story.title}
+      !{story.text}
 
       ul.delete
         li
           a(href='/dashboard/edit/' + story._id, title='Edit this story') Edit
         li
           a(href='/dashboard/delete/' + story._id, title='Delete this story') Delete
-
+        
   script.
     function post() {
       $('#full-editor a').remove();
@@ -52,5 +59,9 @@ block content
       form.appendChild(hiddenField);
 
       document.body.appendChild(form);
+      
       form.submit();
+    };
+    function add_term() {
+      addterm.submit();
     };

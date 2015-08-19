@@ -5,8 +5,6 @@ var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
 var Story = mongoose.model('stories');
 
-
-
 /* GET INDEX items */
 router.get('/', function(req, res) {
   Story.findOneRandom(function(err, story){
