@@ -1,71 +1,59 @@
 doctype html
 html
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge') 
-    meta(name='viewport', content='width=devide-width, inital-scale-1')
-    
-    title= title
-    
-    link(rel='stylesheet', href='/static/stylesheets/bootstrap.min.css')
-    link(rel='stylesheet', href='/static/stylesheets/quill.snow.css')
-    link(rel='stylesheet', href='/static/stylesheets/cover.css')
-  
-  block link
-    -var active = 'Latest'; // default
-  
-  -var menu = { 'Latest': '/', 'Dashboard': '/dashboard' };
-  
-  body
-    .site-wrapper
-      .site-wrapper-inner
-        .cover-container
-          .masthead.clearfix
-            .inner
-              h3.masthead-brand Language of Justice
-              nav
-                ul.nav.masthead-nav
-                  each val, key in menu
-                    if selected === key
-                      li.active
-                        a(href=val, title=key)= key
-                    else
-                      li
-                        a(href=val, title=key)= key
-          .inner.cover
-            block content
-          //.mastfoot
-          //  .inner
-          //    p
-          //      | Footer text here, yes!
-    
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script(src='/static/javascripts/quill.js')    
-    script.
-      var fullEditor = new Quill('#full-editor', {
-      modules: {
-        'toolbar': { container: '#full-toolbar' },
-        'link-tooltip': true
-      },
-      theme: 'snow'
-      });
-      //$('.show-terms').click(function() {
-      //  $('#term-list').toggle();
-      //  $('.dash-story').toggle();
-      //});
-      //$('.show-editor').click(function() {
-      //  $('#full-editor').toggle();
-      //  $('.ql-snow.ql-toolbar .ql-format-group').toggle();
-      //  $('.add-story').toggle();
-      //});
-      //$('.dash-story').click(function() {
-      //  var updateId = "/dashboard/update/" + $(this).find('.id').html();
-      //  var toEdit = $(this).clone(true).find('.id, .delete').remove().end().html();
-      //  fullEditor.setHTML(toEdit);
-      //  $('.cancel').toggle();
-      //});
-      //$('.cancel').click(function() {
-      //  fullEditor.setHTML("");
-      //  $('.cancel').toggle();
-      //});
-      
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge') 
+		meta(name='viewport', content='width=devide-width, inital-scale-1')
+		
+		title= title
+		
+		link(rel='stylesheet', href='/static/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/static/stylesheets/quill.snow.css')
+		link(rel='stylesheet', href='/static/stylesheets/cover.css')
+	
+	block link
+		-var active = 'Latest'; // default
+	
+	-var menu = { 'Latest': '/', 'Dashboard': '/dashboard' };
+	
+	body
+		.site-wrapper
+			.site-wrapper-inner
+				.cover-container
+					.masthead.clearfix
+						.inner
+							h3.masthead-brand Language of Justice
+							nav
+								ul.nav.masthead-nav
+									each val, key in menu
+										if selected === key
+											li.active
+												a(href=val, title=key)= key
+										else
+											li
+												a(href=val, title=key)= key
+					.inner.cover
+						block content
+					//.mastfoot
+					//	.inner
+					//		p
+					//			| Footer text here, yes!
+		
+		script(src='/static/javascripts/jquery-1.9.1.min.js')
+		script(src='/static/javascripts/quill.js')		
+		script(src='/static/javascripts/jquery.hideseek.min.js')
+		script.
+			var fullEditor = new Quill('#full-editor', {
+			modules: {
+				'toolbar': { container: '#full-toolbar' },
+				'link-tooltip': true
+			},
+			theme: 'snow'
+			});
+			$(document).ready(function() {
+				$('#term-search').hideseek();
+			});
+			//$('li.dash-term').click(function() {
+			//	$(this).clone().appendTo('#terms-added');
+			//});
+			

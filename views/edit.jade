@@ -28,12 +28,21 @@ block content
 				
 			#id
 				!{story.id}
+				
+			#terms-added
+				- for term in linkedTerms
+					!{story.linkedTerms.word}
 		
 		#term-list(style='margin: 0; padding-top: 40px;')
-			- for term in terms
-				div.dash-term(style='margin-bottom: 15px;')
-					div.dash-word
-						!{term.word}
+			input(id='term-search', name='term-search', data-list='.term-results', type='text', value='', placeholder='Search for term', autocomplete='off').term-edit
+			ul.term-results
+				- for term in terms
+					li.dash-term(style='margin-bottom: 5px;')
+						div.dash-word
+							a(href='/dashboard/addterm/' + story._id + '/' + term._id)!{term.word}
+							
+	#terms-added
+			
 		
 	script.
 		function post() {
@@ -54,7 +63,7 @@ block content
 
 			document.body.appendChild(form);
 			form.submit();
-		 };
-		 function add_row() {
-			 
-		 }
+		};
+		function addTerm() {
+			
+		};

@@ -31,6 +31,7 @@ app.use('/', index);
 app.use('/dashboard', dashboard);
 app.use('/dashboard/create', dashboard);
 app.use('/dashboard/add', dashboard.add);
+app.use('/dashboard/addterm/:storyid/:termid', dashboard.addterm);
 app.use('/dashboard/edit/:id', dashboard.edit);
 app.use('/dashboard/update/:id', dashboard.update);
 app.use('/dashboard/delete/:id', dashboard.delete);

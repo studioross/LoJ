@@ -43,7 +43,7 @@ block content
             !{term.word}
           div.dash-definition
             !{term.definition}
-          ul(style='padding: 0;')
+          ul.term-menu
             li
               a(href='/dashboard/deleteterm/' + term._id, title='Delete this term') Delete
     
@@ -51,6 +51,7 @@ block content
       - for story in stories
         div.dash-story
           !{story.text}
+          
           ul
             li
               a(href='/dashboard/edit/' + story._id, title='Edit this story') Edit

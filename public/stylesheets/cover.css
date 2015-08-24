@@ -160,9 +160,22 @@ sup {
   margin: 20px 0 40px 0;
   /*display: none;*/
 }
+#terms-added {
+  float: left;
+  width: 70%%;
+  text-align: left;
+}
+#terms-added .dash-term:hover {
+  background: none;
+}
+.term-results {
+  width: 100%;
+}
 .dash-term {
+  width: 100%;
   min-height: 30px;
   margin-bottom: 25px;
+  padding-left: 0;
 }
 .dash-term:hover {
   background: #bfbfbf;
@@ -226,6 +239,9 @@ ul {
   list-style-type: none;
   padding: 20px 0 20px 0;
   float: right;
+}
+ul.term-menu {
+  padding: 0;
 }
 li {
   display: inline-block;
