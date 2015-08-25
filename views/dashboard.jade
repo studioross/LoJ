@@ -44,18 +44,17 @@ block content
           div.dash-definition
             !{term.definition}
           ul.term-menu
-            li
+            li.delete
               a(href='/dashboard/deleteterm/' + term._id, title='Delete this term') Delete
     
     #story-list
       - for story in stories
         div.dash-story
           !{story.text}
-          
           ul
             li
               a(href='/dashboard/edit/' + story._id, title='Edit this story') Edit
-            li
+            li.delete
               a(href='/dashboard/delete/' + story._id, title='Delete this story') Delete
         
   script.

@@ -161,12 +161,13 @@ sup {
   /*display: none;*/
 }
 #terms-added {
+  margin-top: 40px;
   float: left;
-  width: 70%%;
+  width: 100%%;
   text-align: left;
 }
 #terms-added .dash-term:hover {
-  background: none;
+  background-color: #FE5D26;
 }
 .term-results {
   width: 100%;
@@ -184,6 +185,10 @@ sup {
   padding: 5px;
   margin-right: 5px;
   font-weight: bold;
+}
+.dash-word a:hover {
+  text-decoration: none;
+  color: #444;
 }
 .dash-definition {
   padding: 5px;
@@ -256,6 +261,10 @@ li a {
 li a:hover {
   text-decoration: none;
   color: #06c;
+}
+li.delete a:hover {
+  text-decoration: none;
+  color: #FE5D26;
 }
 #id {
   text-align: right;

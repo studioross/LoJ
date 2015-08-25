@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 var mongoose = require('mongoose');
 var Story = mongoose.model('stories');
 var Term = mongoose.model('terms');
 
-/* GET items */
+/* GET stories and terms */
 router.get('/', function(req, res) {
   Story.find(function(err, stories){
     // console.log(stories)
@@ -26,6 +27,11 @@ router.post('/', function(req, res) {
   });
 });
 
+/* POST image */
+router.post('/dashboard/upload', upload.single('anchor'), function(req, res, next) {
+  
+});
+
 /* POST term */
 router.add = function(req, res) {
   new Term({word : req.body.term, definition : req.body.definition})
@@ -35,7 +41,7 @@ router.add = function(req, res) {
   });
 };
 
-/* ADD TERM to individual item */
+/* ADD TERM to individual story */
 router.addterm = function(req, res) {
   Story.findById(req.params.storyid, function(err, story) {
     Term.findById(req.params.termid, function(err, term) {
@@ -48,17 +54,30 @@ router.addterm = function(req, res) {
   });
 };
 
-/* EDIT individual item */
-router.edit = function(req, res) {
-  Story.findById(req.params.id, function(err, story) {
-    Term.find(function(err, terms){
-      console.log(story)
-      res.render('edit', { title: 'LoJ :: Edit Story', story : story, linkedTerms : story.linkedTerms, terms : terms });
+/* REMOVE TERM from individual story */
+router.removeterm = function(req, res) {
+  Story.findById(req.params.storyid, function(err, story) {
+    Term.findById(req.params.termid, function(err, term) {
+      story.linkedTerms.pull(req.params.termid);
+      story.save(function(err, story) {
+        console.log(story);
+        res.redirect('/dashboard/edit/' + story.id);
+      });
     });
   });
 };
 
-/* UPDATE individual item */
+/* EDIT individual story */
+router.edit = function(req, res) {
+  Story.findById(req.params.id, function(err, story) {
+    Term.find(function(err, terms){
+      console.log(story);
+      res.render('edit', { title: 'LoJ :: Edit Story', story : story, terms : terms, termsAdded : story.linkedTerms });
+    });
+  });
+};
+
+/* UPDATE individual story */
 router.update = function(req, res) {
   Story.findById(req.params.id, function(err, story) {
     story.text = req.body.contents;
@@ -69,17 +88,7 @@ router.update = function(req, res) {
   });
 };
 
-/* ADD TERMS to individual item
-router.assign = function(req, res) {
-
-  Term.findById(req.params.id, function(err, term) {
-    term.linkedStories.
-    console.log(term)
-  });
-};
-*/
-
-/* DESTROY items */
+/* DESTROY story */
 router.delete = function(req, res) {
   Story.findById(req.params.id, function(err, story) {
     story.remove(function (err, story) {
@@ -88,6 +97,7 @@ router.delete = function(req, res) {
   });
 };
 
+/* DESTROY term */
 router.deleteterm = function(req, res) {
   Term.findById(req.params.id, function(err, term) {
     term.remove(function (err, term) {
@@ -95,5 +105,8 @@ router.deleteterm = function(req, res) {
     });
   });
 };
+
+/* UNLINK term */
+
 
 module.exports = router;

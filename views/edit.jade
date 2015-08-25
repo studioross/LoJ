@@ -30,8 +30,10 @@ block content
 				!{story.id}
 				
 			#terms-added
-				- for term in linkedTerms
-					!{story.linkedTerms.word}
+				- for termAdded in termsAdded
+					li.dash-term(style='margin-bottom: 5px;')
+						div.dash-word
+							a(href='/dashboard/removeterm/' + story._id + '/' + termAdded._id)!{termAdded.word}
 		
 		#term-list(style='margin: 0; padding-top: 40px;')
 			input(id='term-search', name='term-search', data-list='.term-results', type='text', value='', placeholder='Search for term', autocomplete='off').term-edit
@@ -39,11 +41,8 @@ block content
 				- for term in terms
 					li.dash-term(style='margin-bottom: 5px;')
 						div.dash-word
-							a(href='/dashboard/addterm/' + story._id + '/' + term._id)!{term.word}
+							a(href='/dashboard/addterm/' + story._id + '/' + term._id) !{term.word}
 							
-	#terms-added
-			
-		
 	script.
 		function post() {
 			var actionPath = "/dashboard/update/" + $('#id').html();
