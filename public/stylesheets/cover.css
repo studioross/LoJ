@@ -155,15 +155,39 @@ sup {
   text-align: left;
   float: right;
   width: 25%;
-  min-height: 50px;
+  min-height: 422px;
   padding-top: 50px;
   margin: 20px 0 40px 0;
   /*display: none;*/
 }
+#image-upload {
+  margin-top: 40px;
+  float: right;
+  width: 25%;
+}
+.dropzone {
+  width: 100%;
+  float: right;
+  min-height: 82px;
+  border: 1px dashed #444;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+.dz-success-mark, .dz-error-mark {
+  display: none;
+}
+.dz-image {
+  float: left;
+  padding: 5px 0 0 35px;
+}
+.dz-message {
+  padding-top: 20px;
+}
 #terms-added {
   margin-top: 40px;
   float: left;
-  width: 100%%;
+  width: 70%;
   text-align: left;
 }
 #terms-added .dash-term:hover {
@@ -221,7 +245,6 @@ sup {
   text-decoration: none;
   color: #06c;
 }
-
 /* Dashboard story styling */
 #story-list {
   text-align: left;

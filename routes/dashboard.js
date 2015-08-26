@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var multer = require('multer');
-var upload = multer({ dest: 'uploads/' });
 
 var mongoose = require('mongoose');
 var Story = mongoose.model('stories');
@@ -27,11 +25,6 @@ router.post('/', function(req, res) {
   });
 });
 
-/* POST image */
-router.post('/dashboard/upload', upload.single('anchor'), function(req, res, next) {
-  
-});
-
 /* POST term */
 router.add = function(req, res) {
   new Term({word : req.body.term, definition : req.body.definition})
@@ -40,6 +33,9 @@ router.add = function(req, res) {
     res.redirect('/dashboard');
   });
 };
+
+/* UPLOAD image */
+
 
 /* ADD TERM to individual story */
 router.addterm = function(req, res) {

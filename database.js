@@ -5,13 +5,12 @@ var Schema   = mongoose.Schema;
 var Term = new Schema({
   word : String,
   definition : String,
-  //linkedStories : [{ type: Schema.Types.ObjectId, ref: 'Story' }],
 });
 
 var Story = new Schema({
   text : String,
-  //linkedTerms : [{ type: Schema.Types.ObjectId, ref: 'Term' }],
-  linkedTerms: [Term]
+  linkedTerms: [Term],
+  image : String,
 });
 
 Story.plugin(random);

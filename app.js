@@ -34,6 +34,7 @@ app.use('/dashboard/add', dashboard.add);
 app.use('/dashboard/addterm/:storyid/:termid', dashboard.addterm);
 app.use('/dashboard/removeterm/:storyid/:termid', dashboard.removeterm);
 app.use('/dashboard/edit/:id', dashboard.edit);
+app.use('/dashboard/upload', dashboard);
 app.use('/dashboard/update/:id', dashboard.update);
 app.use('/dashboard/delete/:id', dashboard.delete);
 app.use('/dashboard/deleteterm/:id', dashboard.deleteterm);

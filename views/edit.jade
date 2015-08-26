@@ -27,13 +27,10 @@ block content
 				!{story.text}
 				
 			#id
-				!{story.id}
-				
-			#terms-added
-				- for termAdded in termsAdded
-					li.dash-term(style='margin-bottom: 5px;')
-						div.dash-word
-							a(href='/dashboard/removeterm/' + story._id + '/' + termAdded._id)!{termAdded.word}
+				!{story.id}	
+		
+		#image-upload
+			form(action='/dashboard/upload', class='dropzone', id='image-drop')		
 		
 		#term-list(style='margin: 0; padding-top: 40px;')
 			input(id='term-search', name='term-search', data-list='.term-results', type='text', value='', placeholder='Search for term', autocomplete='off').term-edit
@@ -42,6 +39,15 @@ block content
 					li.dash-term(style='margin-bottom: 5px;')
 						div.dash-word
 							a(href='/dashboard/addterm/' + story._id + '/' + term._id) !{term.word}
+		
+
+		
+	#terms-added
+		- for termAdded in termsAdded
+			li.dash-term(style='margin-bottom: 5px;')
+				div.dash-word
+					a(href='/dashboard/removeterm/' + story._id + '/' + termAdded._id)!{termAdded.word}			
+
 							
 	script.
 		function post() {
@@ -62,7 +68,4 @@ block content
 
 			document.body.appendChild(form);
 			form.submit();
-		};
-		function addTerm() {
-			
 		};
