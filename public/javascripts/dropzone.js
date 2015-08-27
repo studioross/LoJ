@@ -120,7 +120,7 @@
       parallelUploads: 1,
       uploadMultiple: false,
       maxFilesize: 10,
-      paramName: "file",
+      paramName: "anchor",
       createImageThumbnails: true,
       maxThumbnailFilesize: 10,
       thumbnailWidth: 50,
@@ -133,16 +133,16 @@
       ignoreHiddenFiles: true,
       acceptedFiles: ".jpg",
       acceptedMimeTypes: null,
-      autoProcessQueue: true,
+      autoProcessQueue: false,
       autoQueue: true,
       addRemoveLinks: true,
       previewsContainer: null,
       capture: null,
-      dictDefaultMessage: "Drop image here to upload",
+      dictDefaultMessage: "Drop image here",
       dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
       dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
       dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
-      dictInvalidFileType: "You can't upload files of this type.",
+      dictInvalidFileType: "Invalid file.",
       dictResponseError: "Server responded with {{statusCode}} code.",
       dictCancelUpload: "Cancel upload",
       dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
@@ -160,6 +160,18 @@
         this.on("removedfile", function(file) {
           $('.dz-message').show();
         });
+
+        var submitButton = document.querySelector("#upload")
+        imageDrop = this; // closure
+
+        submitButton.addEventListener("click", function() {
+          imageDrop.processQueue(); // Tell Dropzone to process all queued files.
+        });
+
+        this.on("complete", function(file) {
+          this.removeAllFiles();
+        });
+
         return noop;
       },
       forceFallback: false,

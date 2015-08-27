@@ -7,6 +7,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 var index = require('./routes/index');
 var dashboard = require('./routes/dashboard');
@@ -34,11 +36,18 @@ app.use('/dashboard/add', dashboard.add);
 app.use('/dashboard/addterm/:storyid/:termid', dashboard.addterm);
 app.use('/dashboard/removeterm/:storyid/:termid', dashboard.removeterm);
 app.use('/dashboard/edit/:id', dashboard.edit);
-app.use('/dashboard/upload', dashboard);
 app.use('/dashboard/update/:id', dashboard.update);
 app.use('/dashboard/delete/:id', dashboard.delete);
 app.use('/dashboard/deleteterm/:id', dashboard.deleteterm);
 app.use('/users', users);
+
+// Image uploads!
+app.post('/dashboard/upload', upload.single('anchor'), function(req, res, next) {
+  console.log(req.body);
+  console.log(req.files);
+
+  res.status(204).end();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

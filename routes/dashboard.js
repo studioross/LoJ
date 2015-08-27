@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 });
 
 /* POST story */
-router.post('/', function(req, res) {
+router.post('/dashboard/create', function(req, res) {
   new Story({text : req.body.contents})
   .save(function(err, story){
     console.log(story)
@@ -34,16 +34,13 @@ router.add = function(req, res) {
   });
 };
 
-/* UPLOAD image */
-
-
 /* ADD TERM to individual story */
 router.addterm = function(req, res) {
   Story.findById(req.params.storyid, function(err, story) {
     Term.findById(req.params.termid, function(err, term) {
       story.linkedTerms.push({ word : term.word, definition : term.definition });
       story.save(function(err, story) {
-        console.log(story);
+        //console.log(story);
         res.redirect('/dashboard/edit/' + story.id);
       });
     });
@@ -56,7 +53,7 @@ router.removeterm = function(req, res) {
     Term.findById(req.params.termid, function(err, term) {
       story.linkedTerms.pull(req.params.termid);
       story.save(function(err, story) {
-        console.log(story);
+        //console.log(story);
         res.redirect('/dashboard/edit/' + story.id);
       });
     });
@@ -67,7 +64,7 @@ router.removeterm = function(req, res) {
 router.edit = function(req, res) {
   Story.findById(req.params.id, function(err, story) {
     Term.find(function(err, terms){
-      console.log(story);
+      //console.log(story);
       res.render('edit', { title: 'LoJ :: Edit Story', story : story, terms : terms, termsAdded : story.linkedTerms });
     });
   });

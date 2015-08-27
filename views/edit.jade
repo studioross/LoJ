@@ -30,6 +30,8 @@ block content
 				!{story.id}	
 		
 		#image-upload
+			span(title='Save', class='ql-picker-label add-story', style='padding: 10px 8px 0 0; height: 40px;')
+				a(href='#', id='upload') Upload
 			form(action='/dashboard/upload', class='dropzone', id='image-drop')		
 		
 		#term-list(style='margin: 0; padding-top: 40px;')
