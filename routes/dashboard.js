@@ -1,6 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+var upload = multer({ storage: storage });
+
 var mongoose = require('mongoose');
 var Story = mongoose.model('stories');
 var Term = mongoose.model('terms');
@@ -17,7 +28,7 @@ router.get('/', function(req, res) {
 });
 
 /* POST story */
-router.post('/dashboard/create', function(req, res) {
+router.post('/create', function(req, res) {
   new Story({text : req.body.contents})
   .save(function(err, story){
     console.log(story)
@@ -33,6 +44,15 @@ router.add = function(req, res) {
     res.redirect('/dashboard');
   });
 };
+
+/* UPLOAD & ADD image to story */
+router.post('/upload', upload.single('anchor'), function(req, res, next) {
+  console.log(req.body);
+  console.log(req.file);
+  res.status(204).end();
+
+  imagePath = req.file.originalname;
+});
 
 /* ADD TERM to individual story */
 router.addterm = function(req, res) {
@@ -74,6 +94,7 @@ router.edit = function(req, res) {
 router.update = function(req, res) {
   Story.findById(req.params.id, function(err, story) {
     story.text = req.body.contents;
+    story.image = imagePath;
     story.save(function(err, story) {
       console.log(story)
       res.redirect('/dashboard');

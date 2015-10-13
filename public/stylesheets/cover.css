@@ -164,6 +164,14 @@ sup {
   float: right;
   width: 25%;
 }
+#image-attached {
+  float: right;
+  width: 25%;
+  margin-top: 20px;
+}
+#image-attached img {
+  max-width: 100%;
+}
 .dropzone {
   width: 100%;
   float: right;

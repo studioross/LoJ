@@ -34,7 +34,10 @@ block content
 				a(href='#', id='upload') Upload
 			form(action='/dashboard/upload', class='dropzone', id='image-drop')		
 		
-		#term-list(style='margin: 0; padding-top: 40px;')
+		#image-attached
+				img(src='/images/' + story.image)
+		
+		#term-list(style='margin: 0; padding-top: 20px;')
 			input(id='term-search', name='term-search', data-list='.term-results', type='text', value='', placeholder='Search for term', autocomplete='off').term-edit
 			ul.term-results
 				- for term in terms
